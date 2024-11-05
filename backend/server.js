@@ -10,8 +10,6 @@ connectDB();
 
 app.use(express.json()); //middleware to parse incoming requests with JSON payloads
 
-
-
 // when an HTTP GET request is received at the root URL ('/'), the callback function is executed
 // the callback function takes in two parameters, req (the request object) and res (the response object)
 // the res.send() method sends a response of 'API is running...' to the client
