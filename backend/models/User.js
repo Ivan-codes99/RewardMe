@@ -1,7 +1,14 @@
-const mongoose = require('mongoose'); //importing mongoose library to connect to mongoDB
+const mongoose = require('mongoose'); //importing mongoose library to create mongoose schema
 const bcrypt = require('bcryptjs'); //importing bcryptjs library to hash passwords
 
+//creating a schema for the User model
 const userSchema = new mongoose.Schema({
+
+    userID :{
+        type: String,
+        default: uuidv4,
+        required: true,
+        },
     name: {
         type: String,
         required: true
@@ -17,6 +24,7 @@ const userSchema = new mongoose.Schema({
         },
     role: {
         type: String,
+        enum: ['student', 'faculty', 'admin'],
         required: true,
     },
     rewardBalance: {
