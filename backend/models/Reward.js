@@ -1,6 +1,6 @@
-const e = require('express');
 const mongoose = require('mongoose'); //importing mongoose library to create reward schema
 
+//creating a schema for the Reward model
 const rewardSchema = new mongoose.Schema({
     rewardID: {
         type: String,
@@ -21,4 +21,4 @@ const rewardSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('Reward', rewardSchema);
+module.exports = mongoose.model('Reward', rewardSchema); //exporting the reward model

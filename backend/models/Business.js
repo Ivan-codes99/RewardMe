@@ -18,6 +18,7 @@ const businessSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+    
 });
 
 module.exports = mongoose.model('Business', businessSchema); // exporting the Business model

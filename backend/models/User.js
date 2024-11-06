@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); //importing mongoose library to create mongoose schema
+const mongoose = require('mongoose'); //importing mongoose library to create user schema
 const bcrypt = require('bcryptjs'); //importing bcryptjs library to hash passwords
 
 //creating a schema for the User model
