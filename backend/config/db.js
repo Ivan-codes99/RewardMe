@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose'); //importing mongoose library to connect to mongoDB
 require('dotenv').config(); //loading environment variables from .env file into process.env
 
