@@ -1,11 +1,11 @@
 const mongoose = require('mongoose'); // importing mongoose library to create business schema
-const bcrypt = require('bcryptjs'); // importing bcryptjs library to hash passwords
+const { v4: uuidv4 } = require('uuid'); // importing the uuid library
 
 // creating a schema for the Business model
-const businessSchema = new mongoose.Schema({
+const BusinessSchema = new mongoose.Schema({
     businessID: {
         type: String,
-        default: UUIDv4,
+        default: uuidv4, // generating a unique id for the business
         required: true,
     },
 
@@ -15,10 +15,10 @@ const businessSchema = new mongoose.Schema({
     },
 
     contactInfo: {
-        type: String,
+        type: String, // contact info can be a phone number or email
         required: true
     }
     
 });
 
-module.exports = mongoose.model('Business', businessSchema); // exporting the Business model
+module.exports = mongoose.model('Business', BusinessSchema); // exporting the Business model
