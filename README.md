@@ -8,9 +8,11 @@ This will be a web and mobile application primarily designed to enhance and prom
 **Event Management**: View and join campus events, with real-time updates and notifications.
 **Promotion Management**: Businesses can upload and manage promotional offers accessible to the FIU community.
 **QR Code Scanning**: Users can scan QR codes to verify participation and redeem rewards.
+
 ---------------------------------------------------------------------------------------------------------------
 
 **Tech Stack**
+---------------
 **Backend**: Node.js, Express, MongoDB
 **Authentication**: JWT, bcrypt
 **Frontend**: React.js, Tailwind CSS (if applicable)
