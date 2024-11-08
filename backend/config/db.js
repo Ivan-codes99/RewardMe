@@ -12,4 +12,4 @@ const connectDB = async () => { //async function to connect to mongoDB
     }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; 
