@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     userID :{
         type: String,
         default: uuidv4, //generating a unique id for the user
-        required: true,
+        required: true
         },
 
     name: {
@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['student', 'faculty', 'admin'],
-        required: true,
+        required: true
     },
 
     rewardBalance: {
@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema({
     },
     });
 
-    //to do- add a method to hash the password before saving the user'
+    //method to hash the password before saving the user'
     UserSchema.pre('save', async function(next)
     {
         //only hash if password is new or modified
