@@ -33,3 +33,11 @@ To run this project locally, you need the following installed on your machine:
 
    git clone <repository-url>
    cd RewardMe
+
+   *Be Aware*
+
+   node_modules should be installed by running
+
+   npm install
+
+   in both backend and frontend folders.
