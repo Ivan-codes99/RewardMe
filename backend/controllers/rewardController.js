@@ -103,4 +103,4 @@ const getFilteredRewards = async (req, res) => {
 
 
 
-module.exports = { createReward, getRewards, updateReward, deleteReward };
+module.exports = { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation };

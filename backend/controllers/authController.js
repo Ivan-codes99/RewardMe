@@ -1,28 +1,52 @@
-const User = require('../models/User'); //import User model
-const bcrypt = require("bcryptjs");
+const User = require('../models/User'); // Import User model
+const bcrypt = require('bcryptjs'); // Import bcrypt for password hashing
+const jwt = require('jsonwebtoken'); // Import jwt for token generation
 
-const jwt = require('jsonwebtoken');
-
+// Register function
 async function register(req, res) {
-        //check if user exists in database
-        if (await User.findOne({email: req.body.email}))
-        {
-            res.status(400).json({msg: "User already exists"});
-        }
-        
-        //create new user
-        else{
-            const newUser = new User(req.body);
-            const salt = await bcrypt.genSalt(10);
+    try {
+        const { name, email, password, role } = req.body;
 
-            newUser.password = await bcrypt.hash(newUser.password, salt);
-            await newUser.save();
-            
-
-           const token = jwt.sign({id: newUser.userID, role: newUser.role},
-                         process.env.JWT_SECRET,
-                         {expiresIn: '1h'}
-           );
-           res.status(201).json({msg:`User ${newUser.name} registered successfully.`, token})
+        // Validate required fields
+        if (!name || !email || !password || !role) {
+            return res.status(400).json({ msg: "All fields are required" });
         }
+
+        // Check if user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ msg: "User already exists" });
+        }
+
+        // Create new user
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new User({
+            name,
+            email,
+            password: hashedPassword,
+            role,
+        });
+
+        await newUser.save();
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { id: newUser._id, role: newUser.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.status(201).json({ msg: `User ${newUser.name} registered successfully.`, token });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
     }
+}
+const login = async (req, res) => {
+    res.send('Login functionality not implemented yet');
+};
+
+
+module.exports = { register, login };

@@ -2,6 +2,7 @@ const express = require('express'); //importing express library
 const connectDB = require('./config/db'); //importing the connectDB function to connect to mongoDB
 const authRoutes = require('./routes/authRoutes'); //importing authRoutes 
 const rewardRoutes = require('./routes/rewardRoutes'); // Import reward routes
+const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
 require('dotenv').config(); //loading environment variables from .env file into process.env
@@ -26,6 +27,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/rewards', rewardRoutes);  // Reward management routes
 app.use('/api/users', userRoutes);      // New user routes for profile and settings
 
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
+
 // starting the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); //starting the server on port 5000
