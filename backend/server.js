@@ -4,6 +4,8 @@ const authRoutes = require('./routes/authRoutes'); //importing authRoutes
 const rewardRoutes = require('./routes/rewardRoutes'); // Import reward routes
 const userRoutes = require('./routes/userRoutes');
 const path = require('path');
+const eventRoutes = require('./routes/eventRoutes'); // Import event routes
+
 
 require('dotenv').config(); //loading environment variables from .env file into process.env
 const app = express(); //initializing express
@@ -30,6 +32,8 @@ app.use('/api/users', userRoutes);      // New user routes for profile and setti
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
+
+app.use('/api/events', eventRoutes);  // Event management routes
 
 // starting the server
 const PORT = process.env.PORT || 5001;

@@ -44,9 +44,35 @@ async function register(req, res) {
         res.status(500).send("Server error");
     }
 }
-const login = async (req, res) => {
-    res.send('Login functionality not implemented yet');
-};
 
 
+async function login(req, res) {
+    //check if user exists by email
+    try {
+
+        const user = await User.findOne({ email: req.body.email });// if a matching document is found, the  <- user variable 
+        if (!user) {                                                  //will be an object representing the user document retrieved
+            return res.status(400).json({msg: "Invalid credentials"});//from the MongoDB database, this object will be an instance
+        }                                                             // of the Mongoose model: User
+
+        //verify password
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        if (!isMatch){
+            return res.status(400).json({msg: "Invalid credentials"});
+        }
+
+        //Generate JWT token
+        const token = jwt.sign(
+            {id: user.userID, role: user.role},
+            process.env.JWT_SECRET,
+            {expiresIn: '1h'}
+        );
+
+        // Send response with token
+        res.json({ token });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server error");
+    }
+}
 module.exports = { register, login };
