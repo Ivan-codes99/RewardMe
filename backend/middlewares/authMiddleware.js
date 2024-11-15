@@ -14,7 +14,6 @@ function authMiddleware(req, res, next) {
             if (err) {
                 return res.status(401).json({ msg: "Token is not valid"});
             }
-
             // Attach decoded token data to request object
             req.user = decoded;
             next()
@@ -26,7 +25,6 @@ function authMiddleware(req, res, next) {
 }
 
 module.exports = authMiddleware;
-
 
 //for jwt.verify:
 // If a callback is supplied, function acts asynchronously. 

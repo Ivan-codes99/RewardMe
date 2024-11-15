@@ -7,7 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const rewardRoutes = require('./routes/rewardRoutes'); 
 const eventRoutes = require('./routes/eventRoutes'); 
 const testRoutes = require('./routes/testRoutes');
-const userRoutes = require('./routes/userRoutes');
+//const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
 
@@ -40,7 +40,7 @@ app.use('api/testing', testRoutes);
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/rewards', rewardRoutes);  // Reward management routes
 app.use('/api/events', eventRoutes);  // Event management routes
-app.use('/api/users', userRoutes);      // New user routes for profile and setting
+//app.use('/api/users', userRoutes);      // New user routes for profile and setting
 //-------------
 
 // starting the server
