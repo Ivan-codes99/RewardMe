@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const rewardRoutes = require('./routes/rewardRoutes'); 
 const eventRoutes = require('./routes/eventRoutes'); 
 const testRoutes = require('./routes/testRoutes');
+const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
 
