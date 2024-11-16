@@ -1,5 +1,14 @@
 const express = require('express');
-const { createEvent, getEvents, updateEvent, deleteEvent } = require('../controllers/eventController');
+const { 
+    createEvent, 
+    getEvents, 
+    updateEvent, 
+    deleteEvent, 
+    searchEvents, 
+    filterEventsByDate, 
+    getEventsWithPagination, 
+    addRSVP 
+} = require('../controllers/eventController');
 const router = express.Router();
 
 // Event CRUD routes
