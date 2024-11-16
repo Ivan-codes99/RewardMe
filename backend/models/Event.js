@@ -22,7 +22,22 @@ const EventSchema = new mongoose.Schema({
     location: {
         type: String,
         required: true
-    }
+    },
+
+    category: {
+        type: String,
+        required: true,
+        enum: ['Conference', 'Workshop', 'Concert', 'Meetup'], // Define categories
+        default: 'Meetup'
+    },
+
+    attendees: [
+        {
+            userID: { type: String, required: true }, // User ID of the attendee
+            status: { type: String, enum: ['Confirmed', 'Pending'], default: 'Pending' }
+        }
+    ]
+    
 
 })
 
