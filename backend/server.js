@@ -16,23 +16,20 @@ const app = express(); //initializing express
 
 //connect to database
 connectDB();
-//---------
+//-------------
 
 app.use(express.json()); //middleware to parse incoming requests with JSON payloads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // middleware to make uploaded images accesible
 
-//---------
-
+//-------------
 // when an HTTP GET request is received at the root URL ('/'), the callback function is executed
 // the callback function takes in two parameters, req (the request object) and res (the response object)
 // the res.send() method sends a response of 'API is running...' to the client
 // the req parameter represents the HTTP request and contains information about the request
-
 //-------------
 app.get('/', (req, res) => {
     res.send('API is running...');
   });
-
 
 //------------- Test route
 app.use('api/testing', testRoutes);
