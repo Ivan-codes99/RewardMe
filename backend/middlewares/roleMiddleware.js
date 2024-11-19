@@ -1,6 +1,5 @@
 function roleMiddleware(allowedRoles) {
     
-    
     return (req, res, next) => {
     // Check if the user role mateches allowed roles.    
 
@@ -20,3 +19,5 @@ function roleMiddleware(allowedRoles) {
     
     }
 }
+
+module.exports = roleMiddleware;
