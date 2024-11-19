@@ -101,6 +101,31 @@ const getFilteredRewards = async (req, res) => {
     }
 };
 
+// Function to search and filter rewards
+const searchRewards = async (req, res) => {
+    try {
+       
+        const { points, expiryDate } = req.query;
+
+        
+        const query = {};
+        if (points) query.pointsCost = { $lte: points }; 
+        if (expiryDate) query.expirationDate = { $lte: new Date(expiryDate) }; 
+
+       
+        const rewards = await Reward.find(query);
+
+        
+        res.status(200).json(rewards);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server error while searching rewards' });
+    }
+};
 
 
-module.exports = { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation };
+
+
+
+
+module.exports = { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation, searchRewards };
