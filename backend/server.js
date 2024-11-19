@@ -5,8 +5,10 @@ const rewardRoutes = require('./routes/rewardRoutes'); // Import reward routes
 const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
-
+console.log('MongoDB URI:', process.env.MONGO_URI); // Add this line for debugging
 require('dotenv').config(); //loading environment variables from .env file into process.env
+
+
 const app = express(); //initializing express
 
 //connect to database
@@ -26,8 +28,7 @@ app.get('/', (req, res) => {
     res.send('API is running...');
   });
 
-//------------- Test route
-app.use('api/testing', testRoutes);
+
 //------------- Routes
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/rewards', rewardRoutes);  // Reward management routes
@@ -37,7 +38,7 @@ app.get('/', (req, res) => {
   res.send('Server is running!');
 });
 
-app.use('/api/events', eventRoutes);  // Event management routes
+
 
 // starting the server
 const PORT = process.env.PORT || 5001;
