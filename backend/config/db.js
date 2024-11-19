@@ -11,5 +11,6 @@ const connectDB = async () => { //async function to connect to mongoDB
         process.exit(1);
     }
 };
+console.log('MongoDB URI:', process.env.MONGO_URI);
 
 module.exports = connectDB; 

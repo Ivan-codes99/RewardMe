@@ -1,5 +1,5 @@
 const express = require('express');
-const { createReward, getRewards, updateReward, deleteReward, redeemReward, getFilteredRewards, toggleRewardActivation} = require('../controllers/rewardController');
+const { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation } = require('../controllers/rewardController');
 const router = express.Router();
 
 

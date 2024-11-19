@@ -8,7 +8,7 @@ const updateProfile = async (req, res) => {
 
         // Find user by ID and update profile information
         const updatedUser = await User.findByIdAndUpdate(
-            req.user.id, // Assuming req.user.id is set after authentication
+            req.user.id, 
             {
                 bio,
                 contactInfo,
