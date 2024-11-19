@@ -49,16 +49,19 @@ async function register(req, res) {
 async function login(req, res) {
     //check if user exists by email
     try {
-
         const user = await User.findOne({ email: req.body.email });// if a matching document is found, the  <- user variable 
         if (!user) {                                                  //will be an object representing the user document retrieved
-            return res.status(400).json({msg: "Invalid credentials"});//from the MongoDB database, this object will be an instance
+            return res.status(400).json({msg: "Invalid credentials, email not found"});//from the MongoDB database, this object will be an instance
         }                                                             // of the Mongoose model: User
 
         //verify password
+        console.log(req.body.password);
+        console.log(user.password);
         const isMatch = await bcrypt.compare(req.body.password, user.password);
+        console.log(isMatch);
+
         if (!isMatch){
-            return res.status(400).json({msg: "Invalid credentials"});
+            return res.status(400).json({msg: "Invalid password"});
         }
 
         //Generate JWT token

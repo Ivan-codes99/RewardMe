@@ -47,4 +47,75 @@ const deleteEvent = async (req, res) => {
     }
 };
 
-module.exports = { createEvent, getEvents, updateEvent, deleteEvent };
+// Search events by query (name or location)
+const searchEvents = async (req, res) => {
+    try {
+        const { query } = req.query; // Get the search query from the request
+        const events = await Event.find({
+            $or: [
+                { name: { $regex: query, $options: 'i' } }, // Case-insensitive search
+                { location: { $regex: query, $options: 'i' } }
+            ]
+        });
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to search events' });
+    }
+};
+
+// Filter events by date range
+const filterEventsByDate = async (req, res) => {
+    try {
+        const { startDate, endDate } = req.query; // Extract dates from query parameters
+        const events = await Event.find({
+            date: { $gte: new Date(startDate), $lte: new Date(endDate) }
+        });
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to filter events by date range' });
+    }
+};
+
+// Get events with pagination
+const getEventsWithPagination = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        const events = await Event.find().skip(skip).limit(limit);
+        const total = await Event.countDocuments();
+
+        res.status(200).json({
+            events,
+            page,
+            totalPages: Math.ceil(total / limit),
+            totalEvents: total
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve events with pagination' });
+    }
+};
+
+// Add RSVP for an event
+const addRSVP = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userID, status } = req.body;
+
+        const event = await Event.findById(id);
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        event.attendees.push({ userID, status });
+        await event.save();
+
+        res.status(200).json(event);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add RSVP' });
+    }
+};
+
+module.exports = { createEvent, getEvents, updateEvent, deleteEvent, searchEvents, filterEventsByDate
+    , getEventsWithPagination, addRSVP };

@@ -6,9 +6,10 @@ const bcrypt = require('bcryptjs'); // Importing bcryptjs library to hash passwo
 const UserSchema = new mongoose.Schema({
     userID: {
         type: String,
-        default: uuidv4, // Generating a unique id for the user
-        required: true,
-    },
+        default: uuidv4, //generating a unique id for the user
+        required: true
+        },
+
     name: {
         type: String,
         required: true
@@ -25,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['student', 'faculty', 'admin'],
-        required: true,
+        required: true
     },
     rewardBalance: {
         type: Number,
@@ -50,15 +51,16 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-// Hash the password before saving the user
-UserSchema.pre('save', async function(next) {
-    // Only hash if password is new or modified
-    if (!this.isModified('password')) return next();
+ //method to hash the password before saving the user'
+    UserSchema.pre('save', async function(next)
+    {
+        //only hash if password is new or modified
+        if (!this.isModified('password')) return next();
 
-    // Generate salt and hash password
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-});
+        //generate salt and hash password
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        next();
+    });
 
 module.exports = mongoose.model('User', UserSchema); // Exporting the User model
