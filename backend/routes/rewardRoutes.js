@@ -1,7 +1,7 @@
 const express = require('express');
 const { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation } = require('../controllers/rewardController');
 const router = express.Router();
-
+const { searchRewards } = require('../controllers/rewardController');
 
 // Reward CRUD routes
 router.post('/rewards', createReward);        // Create a new reward
@@ -11,5 +11,6 @@ router.get('/rewards/filter', getFilteredRewards); // Allow users to apply filte
 router.put('/rewards/:id', updateReward);     // Update a specific reward by ID
 router.put('/rewards/:id/toggleActivation', toggleRewardActivation); 
 router.delete('/rewards/:id', deleteReward);  // Delete a reward by ID
+router.get('/search', searchRewards); // Search by using filtering 
 
 module.exports = router;
