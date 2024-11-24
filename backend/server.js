@@ -4,6 +4,7 @@ const authRoutes = require('./routes/authRoutes'); //importing authRoutes
 const rewardRoutes = require('./routes/rewardRoutes'); // Import reward routes
 const userRoutes = require('./routes/userRoutes');
 const path = require('path');
+const cors = require('cors');
 
 console.log('MongoDB URI:', process.env.MONGO_URI); // Add this line for debugging
 require('dotenv').config(); //loading environment variables from .env file into process.env
@@ -14,6 +15,7 @@ const app = express(); //initializing express
 //connect to database
 connectDB();
 //-------------
+
 
 app.use(express.json()); //middleware to parse incoming requests with JSON payloads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // middleware to make uploaded images accesible
@@ -33,7 +35,10 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/rewards', rewardRoutes);  // Reward management routes
 app.use('/api/users', userRoutes);      // New user routes for profile and settings
-
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend origin
+  credentials: true, 
+}));
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
