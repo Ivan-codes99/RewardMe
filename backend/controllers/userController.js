@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/User'); //importing user model
 
 // Update user profile information
 const updateProfile = async (req, res) => {
@@ -6,13 +6,13 @@ const updateProfile = async (req, res) => {
         const { bio, contactInfo } = req.body;
         const profilePicture = req.file ? `/uploads/${req.file.filename}` : undefined;
 
-        // Find user by ID and update profile information
+        
         const updatedUser = await User.findByIdAndUpdate(
             req.user.id, 
             {
                 bio,
                 contactInfo,
-                ...(profilePicture && { profilePicture }) // Only update if a file was uploaded
+                ...(profilePicture && { profilePicture }) 
             },
             { new: true }
         );
@@ -33,7 +33,7 @@ const updateSettings = async (req, res) => {
     try {
         const { notifications, privacy, language } = req.body.settings;
 
-        // Find user by ID and update settings information
+        
         const updatedUser = await User.findByIdAndUpdate(
             req.user.id,
             {

@@ -1,11 +1,11 @@
-const mongoose = require('mongoose'); // Importing mongoose library
-const { v4: uuidv4 } = require('uuid'); // Importing uuid library
+const mongoose = require('mongoose'); 
+const { v4: uuidv4 } = require('uuid'); 
 
 // Creating a schema for the Reward model
 const RewardSchema = new mongoose.Schema({
     rewardID: {
         type: String,
-        default: uuidv4, // Generating a unique id for the reward
+        default: uuidv4, 
         required: true,
     },
     description: {
@@ -22,12 +22,12 @@ const RewardSchema = new mongoose.Schema({
     },
     isActive: { 
         type: Boolean, 
-        default: true, // Default to active when created
+        default: true, 
         required: true,
     },
-    redeemedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Track users who redeemed the reward
-    category: { type: String }, // Optional: Category of the reward
-    tags: [{ type: String }], // Optional: Tags for filtering
+    redeemedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], 
+    category: { type: String },
+    tags: [{ type: String }], 
 });
 
 // Middleware to automatically deactivate expired rewards
@@ -38,4 +38,4 @@ RewardSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = mongoose.model('Reward', RewardSchema); // Exporting the reward model
+module.exports = mongoose.model('Reward', RewardSchema); 

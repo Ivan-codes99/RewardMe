@@ -1,11 +1,11 @@
-const mongoose = require('mongoose'); // importing mongoose library to create business schema
-const { v4: uuidv4 } = require('uuid'); // importing the uuid library
+const mongoose = require('mongoose'); 
+const { v4: uuidv4 } = require('uuid'); 
 
 // creating a schema for the Business model
 const BusinessSchema = new mongoose.Schema({
     businessID: {
         type: String,
-        default: uuidv4, // generating a unique id for the business
+        default: uuidv4, 
         required: true,
     },
 
@@ -15,7 +15,7 @@ const BusinessSchema = new mongoose.Schema({
     },
 
     contactInfo: {
-        type: String, // contact info can be a phone number or email
+        type: String, 
         required: true
     }
     

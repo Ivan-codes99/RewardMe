@@ -1,12 +1,12 @@
-const mongoose = require('mongoose'); // Importing mongoose library
-const { v4: uuidv4 } = require('uuid'); // Importing uuid library
-const bcrypt = require('bcryptjs'); // Importing bcryptjs library to hash passwords
+const mongoose = require('mongoose'); 
+const { v4: uuidv4 } = require('uuid'); 
+const bcrypt = require('bcryptjs'); 
 
 // Creating a schema for the User model
 const UserSchema = new mongoose.Schema({
     userID: {
         type: String,
-        default: uuidv4, //generating a unique id for the user
+        default: uuidv4, 
         required: true
         },
 
@@ -32,22 +32,22 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    // New fields for User Profile Management
+    
     bio: {
-        type: String, // Optional bio field for the user
+        type: String,
     },
-    contactInfo: { // Object to hold contact details like email or phone
+    contactInfo: { 
         email: { type: String },
         phone: { type: String }
     },
-    profilePicture: { // URL or file path to profile picture
+    profilePicture: { 
         type: String,
     },
-    // New field for Account Settings Management
+   
     settings: {
-        notifications: { type: Boolean, default: true }, // Enable/disable notifications
-        privacy: { type: String, enum: ['public', 'private'], default: 'public' }, // Privacy level
-        language: { type: String, default: 'en' } // Preferred language
+        notifications: { type: Boolean, default: true }, 
+        privacy: { type: String, enum: ['public', 'private'], default: 'public' }, 
+        language: { type: String, default: 'en' } 
     }
 });
 
@@ -63,4 +63,4 @@ const UserSchema = new mongoose.Schema({
         next();
     });
 
-module.exports = mongoose.model('User', UserSchema); // Exporting the User model
+module.exports = mongoose.model('User', UserSchema); 
