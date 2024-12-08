@@ -2,7 +2,7 @@ const User = require('../models/User'); // Import User model
 const bcrypt = require('bcryptjs'); // Import bcrypt for password hashing
 const jwt = require('jsonwebtoken'); // Import jwt for token generation
 
-// Register function
+
 async function register(req, res) {
     try {
         const { name, email, password, role } = req.body;
@@ -49,10 +49,10 @@ async function register(req, res) {
 async function login(req, res) {
     //check if user exists by email
     try {
-        const user = await User.findOne({ email: req.body.email });// if a matching document is found, the  <- user variable 
-        if (!user) {                                                  //will be an object representing the user document retrieved
-            return res.status(400).json({msg: "Invalid credentials, email not found"});//from the MongoDB database, this object will be an instance
-        }                                                             // of the Mongoose model: User
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) {                                                  
+            return res.status(400).json({msg: "Invalid credentials, email not found"});
+        }                                                             
 
         //verify password
         console.log(req.body.password);

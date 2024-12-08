@@ -70,12 +70,12 @@ const redeemReward = async (req, res) => {
         const reward = await Reward.findById(req.params.id);
         if (!reward) return res.status(404).json({ error: 'Reward not found' });
 
-        // Check if user has already redeemed the reward
+        
         if (reward.redeemedBy.includes(userId)) {
             return res.status(400).json({ error: 'Reward already redeemed' });
         }
 
-        reward.redeemedBy.push(userId); // Add user to redeemed list
+        reward.redeemedBy.push(userId); 
         await reward.save();
 
         res.status(200).json({ message: 'Reward redeemed successfully' });
@@ -91,7 +91,7 @@ const getFilteredRewards = async (req, res) => {
     try {
         const query = {};
         if (category) query.category = category;
-        if (tags) query.tags = { $all: tags.split(',') }; // Expecting tags as comma-separated values
+        if (tags) query.tags = { $all: tags.split(',') }; 
         if (isActive !== undefined) query.isActive = isActive === 'true';
 
         const rewards = await Reward.find(query);
@@ -122,10 +122,6 @@ const searchRewards = async (req, res) => {
         res.status(500).json({ message: 'Server error while searching rewards' });
     }
 };
-
-
-
-
 
 
 module.exports = { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation, searchRewards };

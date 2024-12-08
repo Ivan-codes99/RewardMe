@@ -50,10 +50,10 @@ const deleteEvent = async (req, res) => {
 // Search events by query (name or location)
 const searchEvents = async (req, res) => {
     try {
-        const { query } = req.query; // Get the search query from the request
+        const { query } = req.query; 
         const events = await Event.find({
             $or: [
-                { name: { $regex: query, $options: 'i' } }, // Case-insensitive search
+                { name: { $regex: query, $options: 'i' } }, 
                 { location: { $regex: query, $options: 'i' } }
             ]
         });
@@ -66,7 +66,7 @@ const searchEvents = async (req, res) => {
 // Filter events by date range
 const filterEventsByDate = async (req, res) => {
     try {
-        const { startDate, endDate } = req.query; // Extract dates from query parameters
+        const { startDate, endDate } = req.query; 
         const events = await Event.find({
             date: { $gte: new Date(startDate), $lte: new Date(endDate) }
         });

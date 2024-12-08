@@ -1,15 +1,15 @@
-const express = require('express'); //importing express library
-const connectDB = require('./config/db'); //importing the connectDB function to connect to mongoDB
-const authRoutes = require('./routes/authRoutes'); //importing authRoutes 
-const rewardRoutes = require('./routes/rewardRoutes'); // Import reward routes
+const express = require('express'); 
+const connectDB = require('./config/db'); 
+const authRoutes = require('./routes/authRoutes');  
+const rewardRoutes = require('./routes/rewardRoutes'); 
 const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
-console.log('MongoDB URI:', process.env.MONGO_URI); // Add this line for debugging
-require('dotenv').config(); //loading environment variables from .env file into process.env
+console.log('MongoDB URI:', process.env.MONGO_URI); 
+require('dotenv').config(); 
 
 
-const app = express(); //initializing express
+const app = express(); 
 
 //connect to database
 connectDB();
@@ -18,28 +18,20 @@ connectDB();
 app.use(express.json()); //middleware to parse incoming requests with JSON payloads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // middleware to make uploaded images accesible
 
-//-------------
-// when an HTTP GET request is received at the root URL ('/'), the callback function is executed
-// the callback function takes in two parameters, req (the request object) and res (the response object)
-// the res.send() method sends a response of 'API is running...' to the client
-// the req parameter represents the HTTP request and contains information about the request
-//-------------
 app.get('/', (req, res) => {
     res.send('API is running...');
   });
 
 
 //------------- Routes
-app.use('/api/auth', authRoutes); // Authentication routes
-app.use('/api/rewards', rewardRoutes);  // Reward management routes
-app.use('/api/users', userRoutes);      // New user routes for profile and settings
+app.use('/api/auth', authRoutes); 
+app.use('/api/rewards', rewardRoutes);  
+app.use('/api/users', userRoutes);      
 
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
 
-
-
 // starting the server
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); //starting the server on port 5000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
