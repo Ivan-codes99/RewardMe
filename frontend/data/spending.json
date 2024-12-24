@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Starbucks",
+    "amount": "100",
+    "date": "2024-05-01"
+  },
+  {
+    "id": "2",
+    "name": "WiCS General Meeting",
+    "amount": "100",
+    "date": "2024-05-02"
+  },
+  {
+    "id": "3",
+    "name": "Auntie Anne's",
+    "amount": "100",
+    "date": "2024-05-02"
+  },
+  {
+    "id": "4",
+    "name": "Init Build Meeting",
+    "amount": "100",
+    "date": "2024-05-06"
+  },
+  {
+    "id": "5",
+    "name": "Crepe King",
+    "amount": "100",
+    "date": "2024-05-09"
+  },
+  {
+    "id": "6",
+    "name": "Starbucks",
+    "amount": "100",
+    "date": "2024-05-012"
+  }
+]
