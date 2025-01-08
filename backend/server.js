@@ -36,9 +36,10 @@ app.use('/api/rewards', rewardRoutes);
 app.use('/api/users', userRoutes);      
 
 app.get('/', (req, res) => {
-  res.send('Server is running!');
+  res.status(200).send("Server is running!");
 });
 
 // starting the server
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+const HOST = process.env.HOST || '127.0.0.1';
+app.listen(PORT, () => console.log(`Server running on http://${HOST}:${PORT}`)); 
