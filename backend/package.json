@@ -1,14 +1,11 @@
 {
-  "name": "backend",
+  "name": "rewardme-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
@@ -18,5 +15,7 @@
     "mongoose": "^8.8.0",
     "multer": "^1.4.5-lts.1",
     "uuid": "^11.0.3"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

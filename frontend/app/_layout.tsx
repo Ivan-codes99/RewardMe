@@ -35,7 +35,7 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
+    <Stack//fix this
       screenOptions={{
         headerShown: false,
       }}

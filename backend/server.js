@@ -1,3 +1,5 @@
+require('dotenv').config({path: './.env'}); 
+
 const express = require('express'); 
 const connectDB = require('./config/db'); 
 const authRoutes = require('./routes/authRoutes');  
@@ -6,7 +8,6 @@ const userRoutes = require('./routes/userRoutes');
 const path = require('path');
 
 console.log('MongoDB URI:', process.env.MONGO_URI); 
-require('dotenv').config(); 
 
 
 const app = express(); 

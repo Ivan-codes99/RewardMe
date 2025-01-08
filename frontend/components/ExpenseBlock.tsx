@@ -11,7 +11,7 @@ import Colors from "@/constants/Colors";
 
 const ExpenseBlock = ({ expenseList }: { expenseList: ExpenseType[] }) => {
   const renderItem: ListRenderItem<Partial<ExpenseType>> = ({ item }) => {
-    let amount = item.amount.split(".");
+    let amount = item.amount.split(".");//fix this
 
     return (
       <View

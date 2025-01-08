@@ -37,7 +37,7 @@ const Page = () => {
     });
   };
   const getImageSource = (imageName: string) => {
-    return images[imageName] || null; 
+    return images[imageName] || null; //fix this
   };
 
   const renderCategoryButton = (category: string) => (
