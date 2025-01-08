@@ -4,23 +4,31 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');  
 const rewardRoutes = require('./routes/rewardRoutes'); 
 const userRoutes = require('./routes/userRoutes');
+const upload = require('./middleware/upload');
 const path = require('path');
 
-console.log('MongoDB URI:', process.env.MONGO_URI); 
-
 const app = express(); 
-
 //connect to database
 connectDB();
-//-------------
 
-app.use(express.json()); //middleware to parse incoming requests with JSON payloads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // middleware to make uploaded images accesible
+//middleware to parse incoming requests with JSON payloads
+app.use(express.json()); 
 
-app.get('/', (req, res) => {
-    res.send('API is running...');
-  });
+// Error-handling middleware for JSON parsing errors
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ error: 'Invalid JSON payload' });
+  }
+  next(); 
+});
 
+// middleware to make uploaded images accesible
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); 
+
+//route for handling file uploads
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send('File uploaded successfully');
+});
 
 //------------- Routes
 app.use('/api/auth', authRoutes); 
