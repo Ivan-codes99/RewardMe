@@ -4,8 +4,6 @@ const upload = require('../middleware/upload');
 const router = express.Router();
 
 router.put('/profile', upload.single('profilePicture'), updateProfile);
-
-
 router.put('/settings', updateSettings);
 
 module.exports = router;

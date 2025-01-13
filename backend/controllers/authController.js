@@ -17,17 +17,12 @@ async function register(req, res) {
             return res.status(400).json({ msg: "User already exists" });
         }
 
-        // Create new user
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
         const newUser = new User({
             name,
             email,
-            password: hashedPassword,
+            password, //password will be hashed by pre-save middleware
             role,
         });
-
         await newUser.save();
 
         // Generate JWT token
@@ -44,7 +39,6 @@ async function register(req, res) {
     }
 }
 
-
 async function login(req, res) {
     //check if user exists by email
     try {
@@ -54,11 +48,7 @@ async function login(req, res) {
         }                                                             
 
         //verify password
-        console.log(req.body.password);
-        console.log(user.password);
         const isMatch = await bcrypt.compare(req.body.password, user.password);
-        console.log(isMatch);
-
         if (!isMatch){
             return res.status(400).json({msg: "Invalid password"});
         }

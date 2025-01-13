@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema({
     
     bio: {
         type: String,
+        default:""
     },
     contactInfo: { 
         email: { type: String },

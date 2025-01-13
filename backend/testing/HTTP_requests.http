@@ -1,2 +1,22 @@
+
 GET http://127.0.0.1:5000
 Content-Type: application/json
+###
+
+POST http://127.0.0.1:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "John",
+    "email": "JohnDoe@fiu.edu",
+    "password": "password123",
+    "role": "student"
+}
+###
+POST http://127.0.0.1:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "JohnDoe@fiu.edu",
+    "password": "password123"
+}
