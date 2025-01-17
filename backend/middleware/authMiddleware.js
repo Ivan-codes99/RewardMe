@@ -6,7 +6,6 @@ function authMiddleware(req, res, next) {
     try {
         token = req.headers.authorization.split(' ')[1];
     }
-
     catch(error) {
         res.status(401).json({msg: "Authorization denied"});
     }

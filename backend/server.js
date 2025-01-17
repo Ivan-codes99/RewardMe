@@ -3,11 +3,12 @@ const express = require('express');
 const connectDB = require('./config/db'); 
 const authRoutes = require('./routes/authRoutes');  
 const rewardRoutes = require('./routes/rewardRoutes'); 
+const eventRoutes = require('./routes/eventRoutes');
 const userRoutes = require('./routes/userRoutes');
 const upload = require('./middleware/upload');
 const path = require('path');
-
 const app = express(); 
+
 //connect to database
 connectDB();
 

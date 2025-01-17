@@ -1,4 +1,4 @@
-const images = {
+const images: {[key: string]: any} = {
     "8thSt.jpg": require('@/assets/shopsLogos/8thSt.jpg'),
     "aa-logo.jpg": require('@/assets/shopsLogos/aa-logo.jpg'),
     "almazar.jpg": require('@/assets/shopsLogos/almazar.jpg'),

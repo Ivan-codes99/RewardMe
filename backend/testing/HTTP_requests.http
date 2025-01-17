@@ -20,3 +20,11 @@ Content-Type: application/json
     "email": "JohnDoe@fiu.edu",
     "password": "password123"
 }
+
+###
+POST http://127.0.0.1:5000/api/
+Content-Type: application/json
+
+{
+    
+}

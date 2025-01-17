@@ -1,5 +1,4 @@
 const Reward = require('../models/Reward'); // Import the Reward model
-
 // Create a new reward
 const createReward = async (req, res) => {
     try {

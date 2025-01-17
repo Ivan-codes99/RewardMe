@@ -1,7 +1,7 @@
+//TODO Create test HTTP requests
 const express = require('express');
-const { createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation } = require('../controllers/rewardController');
+const {searchRewards, createReward, getRewards, updateReward, deleteReward, getFilteredRewards, redeemReward, toggleRewardActivation } = require('../controllers/rewardController');
 const router = express.Router();
-const { searchRewards } = require('../controllers/rewardController');
 
 // Reward CRUD routes
 router.post('/rewards', createReward);        
