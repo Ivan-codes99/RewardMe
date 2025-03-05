@@ -40,9 +40,3 @@ To run this project locally, you need the following installed on your machine:
 
    npm install
 
-   in the case of .env file missing, manually add it to the backend folder with the following content:
-
-   MONGO_URI=mongodb://localhost:27017/db
-   JWT_SECRET=mySuperSecretKey123!
-   PORT=5005
-
